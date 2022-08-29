@@ -6,7 +6,9 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 const express = require('express');
+const { url } = require('telegraf/typings/button');
 const app = express();
+const url = 'https://cointradermonitor.com/preco-bitcoin-brasil';
 
 const ip = process.env.IP || '0.0.0.0';
 const port = process.env.PORT || 8080;
@@ -35,7 +37,6 @@ bot.launch()
   
   const page = await browser.newPage();
   const proxy = 'https://cors-anywhere.herokuapp.com/';
-  const url = 'https://cointradermonitor.com/preco-bitcoin-brasil';
 
 //turns request interceptor on
 await page.setRequestInterception(true);
@@ -149,7 +150,7 @@ page.on('request', request => {
     const lowerLimit = 50000; //preço muito abaixo do mercado atual R$ 50.000,00
     for (let exchange in data) {
       if (data[exchange] <= lowerLimit)
-        bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]}`)
+        bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]} Oportunidade Imperdível! Acesse agora ${url}`)
       // console.log(`${exchange} : R$ ${data[exchange]}`)
         // console.log(data[exchange]);
       

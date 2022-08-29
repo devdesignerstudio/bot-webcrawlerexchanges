@@ -146,7 +146,7 @@ page.on('request', request => {
    };
   setInterval( async () => {
     const data = await webcrawler();
-    const lowerLimit = 102000; //preço muito abaixo do mercado atual R$ 50.000,00
+    const lowerLimit = 50000; //preço muito abaixo do mercado atual R$ 50.000,00
     for (let exchange in data) {
       if (data[exchange] <= lowerLimit)
         bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]}`)

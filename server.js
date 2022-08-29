@@ -28,11 +28,11 @@ bot.launch()
    async function webcrawler() {
 
   const browser = await puppeteer.launch(
-    {headless: true}
-    // {
-    // args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  // }
+    {
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  }
   );  
+  
   const page = await browser.newPage();
   const proxy = 'https://cors-anywhere.herokuapp.com/';
   const url = 'https://cointradermonitor.com/preco-bitcoin-brasil';

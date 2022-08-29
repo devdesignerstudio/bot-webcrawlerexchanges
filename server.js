@@ -6,9 +6,9 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 const express = require('express');
-const { url } = require('telegraf/typings/button');
+// const { url } = require('telegraf/typings/button');
 const app = express();
-const url = 'https://cointradermonitor.com/preco-bitcoin-brasil';
+  const url = 'https://cointradermonitor.com/preco-bitcoin-brasil';
 
 const ip = process.env.IP || '0.0.0.0';
 const port = process.env.PORT || 8080;

@@ -149,13 +149,16 @@ page.on('request', request => {
     const data = await webcrawler();
     const lowerLimit = 50000; //preço muito abaixo do mercado atual R$ 50.000,00
     console.log(data);
-    for (let exchange in data) {
-      if (data[exchange] <= lowerLimit)
-        bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]} Oportunidade Imperdível! Acesse agora ${url}`)
-      // console.log(`${exchange} : R$ ${data[exchange]}`)
-        // console.log(data[exchange]);
-      
+    if (data){
+      for (let exchange in data) {
+        if (data[exchange] <= lowerLimit)
+          bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]} Oportunidade Imperdível! Acesse agora ${url}`)
+        // console.log(`${exchange} : R$ ${data[exchange]}`)
+          // console.log(data[exchange]);
+        
+      }
     }
+   
     // if (data.ask && data.bid){
       // console.log(data);
       // bot.hears('spread', (ctx) => ctx.reply(`Spread : ${calcSpread(data.ask,data.bid)}`));

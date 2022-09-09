@@ -151,7 +151,7 @@ page.on('request', request => {
     console.log(data);
     if (data){
       for (let exchange in data) {
-        if (data[exchange] <= lowerLimit)
+        if (data[exchange]!= '' && data[exchange] < lowerLimit)
           bot.telegram.sendMessage(process.env.CHAT_ID,`${exchange} : R$ ${data[exchange]} Oportunidade Imperdível! Acesse agora ${url}`)
         // console.log(`${exchange} : R$ ${data[exchange]}`)
           // console.log(data[exchange]);

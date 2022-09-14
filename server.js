@@ -5,6 +5,9 @@ const express = require('express');
 const app = express();
 const ip = process.env.IP || '0.0.0.0';
 const port = process.env.PORT || 8080;
+const bot = new Telegraf(process.env.BOT_TOKEN)
+// bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - CoinTraderMonitor!');
+bot.launch()
 
 //Catches requests made to localhost:3000/
 app.get('/', (req, res) => res.send('Hello World!'));
@@ -25,10 +28,6 @@ async function webcrawler(path='/v1/ticker', data, method = 'GET') {
     console.log(err);
   }
    };
-
-   const bot = new Telegraf(process.env.BOT_TOKEN)
-   bot.telegram.sendMessage(process.env.CHAT_ID,'Bem-vindo(a) ao Bot de Alertas - CoinTraderMonitor!');
-   bot.launch()
 
   setInterval( async () => {
     const data = await webcrawler('/v1/ticker', { exchanges : true } );
